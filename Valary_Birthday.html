@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Valary ❤️</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 70, 130, .18), transparent 35%),
+        linear-gradient(135deg, #12000b, #2b0018 50%, #090008);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .hero {
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 14vw, 8rem);
+      color: #ff5c9d;
+      text-shadow: 0 0 25px rgba(255, 92, 157, .7);
+      animation: glow 2s infinite alternate;
+    }
+
+    .hero h2 {
+      margin-top: 10px;
+      font-size: clamp(1rem, 4vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 25px auto;
+      line-height: 1.8;
+      color: #ffd9e8;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 28px;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff3f8e, #ff78b5);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 25px rgba(255, 63, 142, .45);
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-3px) scale(1.03); }
+
+    .age-section { flex-direction: column; }
+
+    .age-section h2 {
+      color: #ff8fbd;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+
+    #ageNumber {
+      font-size: clamp(7rem, 28vw, 15rem);
+      font-weight: 900;
+      color: #ff4f99;
+      text-shadow:
+        0 0 20px rgba(255, 79, 153, .8),
+        0 0 60px rgba(255, 79, 153, .5);
+      line-height: 1;
+    }
+
+    #ageLabel {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #ffd5e6;
+    }
+
+    .birthday-boom {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: boom .9s ease forwards;
+    }
+
+    .birthday-boom .big23 {
+      font-size: clamp(7rem, 30vw, 16rem);
+      font-weight: 900;
+      color: #ff4f99;
+      text-shadow:
+        0 0 15px #fff,
+        0 0 35px #ff4f99,
+        0 0 80px #ff4f99;
+    }
+
+    .birthday-boom h1 {
+      font-size: clamp(1.8rem, 7vw, 4rem);
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .birthday-boom p {
+      color: #ffd2e4;
+      margin-top: 12px;
+      font-size: 1.1rem;
+    }
+
+    .photo-section { flex-direction: column; }
+
+    .photo-section h2 {
+      margin-bottom: 25px;
+      color: #ff9bc4;
+    }
+
+    .photo-frame {
+      width: min(340px, 85vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      padding: 7px;
+      background: linear-gradient(45deg, #ff3f8e, #fff, #ff3f8e);
+      box-shadow: 0 0 40px rgba(255, 63, 142, .45);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      background: #250012;
+    }
+
+    .message-section { flex-direction: column; }
+
+    .card {
+      width: min(750px, 92vw);
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 35px 25px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+    }
+
+    .card h2 {
+      color: #ff82b6;
+      margin-bottom: 22px;
+      font-size: 2rem;
+    }
+
+    .card p {
+      color: #ffe3ee;
+      line-height: 1.9;
+      margin-bottom: 15px;
+    }
+
+    .wishes {
+      flex-direction: column;
+    }
+
+    .wishes h2 {
+      color: #ff82b6;
+      margin-bottom: 30px;
+    }
+
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: min(850px, 92vw);
+    }
+
+    .wish {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 20px;
+      padding: 28px 15px;
+    }
+
+    .wish .icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .wish h3 {
+      color: #ff9cc5;
+      margin-bottom: 8px;
+    }
+
+    .secret {
+      flex-direction: column;
+    }
+
+    .secret-box {
+      width: min(700px, 92vw);
+      padding: 35px 25px;
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(255, 55, 130, .15), rgba(255,255,255,.05));
+      border: 1px solid rgba(255, 122, 177, .2);
+    }
+
+    .secret-box h2 {
+      color: #ff82b6;
+      margin-bottom: 20px;
+    }
+
+    .secret-box p {
+      color: #ffe1ec;
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: #dba6bb;
+      font-size: .9rem;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 18px;
+      pointer-events: none;
+      animation: rise linear forwards;
+      z-index: 20;
+    }
+
+    .spark {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      pointer-events: none;
+      z-index: 30;
+      animation: spark 1.5s ease-out forwards;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(255,92,157,.5); }
+      to { text-shadow: 0 0 45px rgba(255,92,157,1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes boom {
+      0% { transform: scale(.2); opacity: 0; }
+      55% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes spark {
+      to {
+        transform: translate(var(--x), var(--y)) scale(.1);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wish-grid { grid-template-columns: 1fr; }
+      section { padding: 35px 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <h2>A Special Day For Someone Special</h2>
+    <h1>Valary</h1>
+
+    <p>
+      Today isn't just another day... It's the day the world became a little brighter. ❤️
+    </p>
+
+    <a href="#age" class="btn">Open Your Birthday Surprise</a>
+  </section>
+
+  <!-- Born: 24 September 2003 -->
+  <section class="age-section" id="age">
+    <h2>Let's Count Your Beautiful Years...</h2>
+
+    <div id="ageNumber">1</div>
+    <div id="ageLabel">years of being amazing ❤️</div>
+
+    <div class="birthday-boom" id="birthdayBoom">
+      <div class="big23">23</div>
+      <h1>✨ HAPPY 23RD BIRTHDAY ✨</h1>
+      <p>Years of being beautiful, Valary ❤️</p>
+    </div>
+  </section>
+
+  <section class="photo-section">
+    <h2>Beautiful Moments Deserve Beautiful Memories ❤️</h2>
+
+    <div class="photo-frame">
+      <img src="valary.jpg" alt="Valary">
+    </div>
+  </section>
+
+  <section class="message-section">
+    <div class="card">
+      <h2>For You, Valary ❤️</h2>
+
+      <p>Happy Birthday to you, Valary. ❤️</p>
+
+      <p>
+        Today is a reminder of how special you are and how much happiness
+        you bring into the lives of the people around you.
+      </p>
+
+      <p>
+        I hope this new chapter of your life brings you peace, happiness,
+        success and beautiful memories.
+      </p>
+
+      <p>
+        May the dreams you carry in your heart slowly become reality,
+        and may you always have reasons to smile.
+      </p>
+
+      <p>
+        Keep being the beautiful person you are. Never forget how valuable you are.
+      </p>
+
+      <p><strong>Happy Birthday, Valary. 🎂❤️</strong></p>
+    </div>
+  </section>
+
+  <section class="wishes">
+    <h2>A Few Things I Wish For You</h2>
+
+    <div class="wish-grid">
+      <div class="wish">
+        <div class="icon">❤️</div>
+        <h3>Love</h3>
+        <p>A heart surrounded by genuine love.</p>
+      </div>
+
+      <div class="wish">
+        <div class="icon">😊</div>
+        <h3>Happiness</h3>
+        <p>More reasons to smile every day.</p>
+      </div>
+
+      <div class="wish">
+        <div class="icon">🌹</div>
+        <h3>Beautiful Moments</h3>
+        <p>Memories that stay with you forever.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secret">
+    <div class="secret-box">
+      <h2>Dear Valary... ❤️</h2>
+
+      <p>
+        If you ever doubt how special you are, come back to this little page
+        and remember: someone took the time to create something just for you.
+      </p>
+
+      <p>
+        May this birthday be the beginning of a beautiful chapter.
+        Keep shining. Keep smiling. Keep being you. ❤️
+      </p>
+
+      <p>
+        <strong>Happy Birthday once again, Valary. 🎂🌹</strong>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ just for Valary
+  </footer>
+
+  <script>
+    const targetAge = 23;
+    let age = 1;
+    let started = false;
+
+    const ageNumber = document.getElementById("ageNumber");
+    const ageLabel = document.getElementById("ageLabel");
+    const birthdayBoom = document.getElementById("birthdayBoom");
+
+    function startAgeCountdown() {
+      if (started) return;
+      started = true;
+
+      ageNumber.textContent = age;
+
+      const timer = setInterval(() => {
+        age++;
+
+        if (age >= targetAge) {
+          age = targetAge;
+          ageNumber.style.display = "none";
+          ageLabel.style.display = "none";
+          birthdayBoom.style.display = "flex";
+
+          createSparks();
+
+          clearInterval(timer);
+
+          setTimeout(() => {
+            document.querySelector(".photo-section").scrollIntoView({
+              behavior: "smooth"
+            });
+          }, 4000);
+
+          return;
+        }
+
+        ageNumber.textContent = age;
+      }, 180);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAgeCountdown();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.getElementById("age"));
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = ["❤️", "💖", "💕", "💗", "🌹"][Math.floor(Math.random() * 5)];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 700);
+
+    function createSparks() {
+      for (let i = 0; i < 90; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+
+        spark.style.left = "50%";
+        spark.style.top = "50%";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 100 + Math.random() * 350;
+
+        spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
+        spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(spark);
+
+        setTimeout(() => spark.remove(), 1600);
+      }
+    }
+  </script>
+
+</body>
+</html>
